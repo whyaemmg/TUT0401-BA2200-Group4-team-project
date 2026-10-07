@@ -13,4 +13,4 @@ your team will find it easier to prepare for the final presentation
 at the end of the term.
 
 #User Stories
-1. As a user, I want to ...
+1. As a [kind of user], I want to [accomplish a goal] so that [I receive some benefit].
