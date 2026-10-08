@@ -14,3 +14,4 @@ at the end of the term.
 
 #User Stories
 1. As a [kind of user], I want to [accomplish a goal] so that [I receive some benefit].
+2. As a user, I want to filter cocktail recipes by base spirit，flavour profile, carbonation so that I can easily find and select cocktails I like.
