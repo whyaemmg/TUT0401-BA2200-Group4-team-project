@@ -18,3 +18,5 @@ at the end of the term.
 3. As a user, I want to customize my own cocktail recipe so that my personal need can be met.
 4. As a user, I want to store recipes with their ingredients and instructions so that I can easily access them when I want to drink.
 5. As a user, I want to receive cocktail recommendations or customize personal recipe based on my preferences, I also want to check where I can buy the ingredients for a cocktail so that I can determine whether I can make the cocktail.
+6. As a user, I want to rate and review cocktails so that I can record my experience and revisit drinks I enjoyed.
+7. As a user, I want to find substitutes for missing cocktails ingredients so that I can make a cocktails with what I already have.
