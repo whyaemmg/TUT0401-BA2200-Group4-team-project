@@ -21,3 +21,47 @@ at the end of the term.
 6. As a user, I want to rate and review cocktails so that I can record my experience and revisit drinks I enjoyed.
 7. As a user, I want to find substitutes for missing cocktails ingredients so that I can make a cocktails with what I already have.
 8. As a user, I want to search for cocktails by name so that I can find a specific drink.
+
+
+## Project Timeline(Tentative)
+
+### Oct 12–18: Planning and Setup
+- **[Team]** Decide on the user stories and assign one use case to each member.
+- **[Team]** Draw a basic design of the user interface (GUI).
+- **[Team]** Set up the GitHub repository and Java project.
+
+### Oct 19–25: Start Coding
+- **[Individual]** Start working on basic features using Java and Swing.
+- **[Team]** Explore possible APIs and test how they work.
+- **[Team]** Discuss how different parts of the program will work together.
+
+### Oct 26–Nov 1: Reading Week
+- Optional: Continue working on individual features.
+
+### Nov 2–8: Clean Architecture
+- **[Team]** Plan the code structure based on Clean Architecture.
+- **[Individual]** Update existing code and continue working on assigned use cases.
+- **[Individual]** Write unit tests and create pull requests.
+
+### Nov 9–15: Finish Main Features
+- **[Individual]** Finish assigned use cases, including the UI and tests.
+- **[Team]** Review and merge pull requests.
+- **[Team]** Make sure the API and data saving features work.
+
+### Nov 16–22: Test and Debug
+- **[Integration]** Connect all use cases into one working program.
+- **[Team]** Test the whole program and fix any problems.
+- **[Team]** Check if the code follows Clean Architecture and SOLID principles.
+
+### Nov 23–29: Final Improvements
+- **[Individual]** Improve code and add more tests if needed.
+- **[Team]** Fix remaining bugs and update the README.
+- **[Team]** Make sure the program is ready for the final presentation.
+
+### Nov 30–Dec 6: Prepare for Presentation
+- **[Team]** Make presentation slides and plan the demo.
+- **[Individual]** Prepare to explain personal contributions.
+- **[Team]** Practice the presentation together.
+
+### Dec 8: Final Presentation
+- **[Team]** Presentation.
