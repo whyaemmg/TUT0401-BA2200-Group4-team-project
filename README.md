@@ -34,6 +34,7 @@ at the end of the term.
 - **[Individual]** Start working on basic features using Java and Swing.
 - **[Team]** Explore possible APIs and test how they work.
 - **[Team]** Discuss how different parts of the program will work together.
+- **[Team]** Check our project idea and user stories with the TA to make sure they meet the course requirements.
 
 ### Oct 26–Nov 1: Reading Week
 - Optional: Continue working on individual features.
