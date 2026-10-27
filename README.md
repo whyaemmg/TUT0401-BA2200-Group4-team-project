@@ -13,16 +13,10 @@ your team will find it easier to prepare for the final presentation
 at the end of the term.
 
 #User Stories
-1. As a [kind of user], I want to [accomplish a goal] so that [I receive some benefit].
-2. As a user, I want to filter cocktail recipes by base spirit，flavour profile, carbonation so that I can easily find and select cocktails I like.
-3. As a user, I want to customize my own cocktail recipe so that my personal need can be met.
-4. As a user, I want to store recipes with their ingredients and instructions so that I can easily access them when I want to drink.
-5. As a user, I want to receive cocktail recommendations or customize personal recipe based on my preferences, I also want to check where I can buy the ingredients for a cocktail so that I can determine whether I can make the cocktail.
-6. As a user, I want to rate and review cocktails so that I can record my experience and revisit drinks I enjoyed.
-7. As a user, I want to find substitutes for missing cocktails ingredients so that I can make a cocktails with what I already have.
-8. As a user, I want to search for cocktails by name so that I can find a specific drink.
-
-
+1. As a user, I want to search for cocktails by name and filter them by base spirit, flavour profile, and carbonation so that I can easily find drinks that match my preferences. [Qinli]
+2. As a user, I want to customize existing cocktail recipes by adding, removing, or replacing ingredients and adjusting quantities so that I can make drinks according to my personal preferences. [Enhao]
+3. As a user, I want to save my favourite cocktails, rate them, and add personal notes so that I can keep track of drinks I enjoy and revisit their recipes later. [Jiaqi]
+4. As a user, I want to enter the ingredients I currently have and receive cocktail recommendations based on them so that I can discover drinks I can make without purchasing additional ingredients. [Wenqian]
 ## Project Timeline(Tentative)
 
 ### Oct 12–18: Planning and Setup
