@@ -16,7 +16,7 @@ at the end of the term.
 1. As a user, I want to search for cocktails by name and filter them by base spirit, flavour profile, and carbonation so that I can easily find drinks that match my preferences. [Qinli]
 2. As a user, I want to customize existing cocktail recipes by adding, removing, or replacing ingredients and adjusting quantities so that I can make drinks according to my personal preferences. [Enhao]
 3. As a user, I want to save my favourite cocktails, rate them, and add personal notes so that I can keep track of drinks I enjoy and revisit their recipes later. [Jiaqi]
-4. As a user, I want to enter the ingredients I currently have and receive cocktail recommendations based on them so that I can discover drinks I can make without purchasing additional ingredients. [Wenqian]
+4. As a user, I want to enter the ingredients I currently have and receive cocktail recommendations based on them so that I can discover drinks I like and can make with purchasing minimum additional ingredients. [Wenqian]
 ## Project Timeline(Tentative)
 
 ### Oct 12–18: Planning and Setup
