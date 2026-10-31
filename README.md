@@ -12,11 +12,6 @@ By keeping this README up-to-date,
 your team will find it easier to prepare for the final presentation
 at the end of the term.
 
-#User Stories
-1. As a user, I want to search for cocktails by name and filter them by base spirit, flavour profile, and carbonation so that I can easily find drinks that match my preferences. [Qinli]
-2. As a user, I want to customize existing cocktail recipes by adding, removing, or replacing ingredients and adjusting quantities so that I can make drinks according to my personal preferences. [Enhao]
-3. As a user, I want to save my favourite cocktails, rate them, and add personal notes so that I can keep track of drinks I enjoy and revisit their recipes later. [Jiaqi]
-4. As a user, I want to enter the ingredients I currently have and receive cocktail recommendations based on them so that I can discover drinks I like and can make with purchasing minimum additional ingredients. [Wenqian]
 ## Project Timeline(Tentative)
 
 ### Oct 12–18: Planning and Setup
@@ -60,3 +55,68 @@ at the end of the term.
 
 ### Dec 8: Final Presentation
 - **[Team]** Presentation.
+
+
+
+# Project Name
+CocktailCraft
+## Team Information
+- team name: Team400
+- TUT: 0401 BA2200 Group4
+### Team Members
+- Qinli Yang
+- Enhao Tang
+- Jiaqi Shen
+- Wenqian Ling
+---
+## Project Description
+CocktailCraft is an application for discovering, customizing, and managing cocktail recipes. It allows users to search and filter cocktails, personalize ingredients and quantities, save favourites, rate drinks, and receive recommendations based on the ingredients they have available.
+### Domain
+[Project description]
+---
+## User Stories
+### User Story 1
+As a user, I want to search for cocktails by name and filter them by base spirit, flavour profile, and carbonation so that I can easily find drinks that match my preferences.
+### User Story 2
+As a user, I want to customize existing cocktail recipes by adding, removing, or replacing ingredients and adjusting quantities so that I can make drinks according to my personal preferences.
+### User Story 3
+As a user, I want to save my favourite cocktails, rate them, and add personal notes so that I can keep track of drinks I enjoy and revisit their recipes later.
+### User Story 4
+As a user, I want to enter the ingredients I currently have and receive cocktail recommendations based on them so that I can discover drinks I like and can make with purchasing minimum additional ingredients.
+
+---
+## Use Cases
+### Use Case 1
+
+### Use Case 2
+
+### Use Case 3
+
+(Add additional use cases as needed.)
+---
+## Minimal Viable Product (MVP)
+| Team Member | MVP Use Case |
+|-------------|--------------|
+| Name | Use Case |
+| Name | Use Case |
+| Name | Use Case |
+---
+## Entities
+### Entity 1
+### Entity 2
+(Add additional entities as needed.)
+---
+## API Usage
+**API Name:**
+**Documentation:** [Link]
+**How it is used in the program:**
+---
+## Design Diagrams
+### UML Class Diagram
+### Sequence Diagrams
+---
+## How to Run
+[Instructions for running the program.]
+---
+## Notes
+[Any additional project information.]
