@@ -12,51 +12,6 @@ By keeping this README up-to-date,
 your team will find it easier to prepare for the final presentation
 at the end of the term.
 
-## Project Timeline(Tentative)
-
-### Oct 12–18: Planning and Setup
-- **[Team]** Decide on the user stories and assign one use case to each member.
-- **[Team]** Draw a basic design of the user interface (GUI).
-- **[Team]** Set up the GitHub repository and Java project.
-
-### Oct 19–25: Start Coding
-- **[Individual]** Start working on basic features using Java and Swing.
-- **[Team]** Explore possible APIs and test how they work.
-- **[Team]** Discuss how different parts of the program will work together.
-- **[Team]** Check our project idea and user stories with the TA to make sure they meet the course requirements.
-
-### Oct 26–Nov 1: Reading Week
-- Optional: Continue working on individual features.
-
-### Nov 2–8: Clean Architecture
-- **[Team]** Plan the code structure based on Clean Architecture.
-- **[Individual]** Update existing code and continue working on assigned use cases.
-- **[Individual]** Write unit tests and create pull requests.
-
-### Nov 9–15: Finish Main Features
-- **[Individual]** Finish assigned use cases, including the UI and tests.
-- **[Team]** Review and merge pull requests.
-- **[Team]** Make sure the API and data saving features work.
-
-### Nov 16–22: Test and Debug
-- **[Integration]** Connect all use cases into one working program.
-- **[Team]** Test the whole program and fix any problems.
-- **[Team]** Check if the code follows Clean Architecture and SOLID principles.
-
-### Nov 23–29: Final Improvements
-- **[Individual]** Improve code and add more tests if needed.
-- **[Team]** Fix remaining bugs and update the README.
-- **[Team]** Make sure the program is ready for the final presentation.
-
-### Nov 30–Dec 6: Prepare for Presentation
-- **[Team]** Make presentation slides and plan the demo.
-- **[Individual]** Prepare to explain personal contributions.
-- **[Team]** Practice the presentation together.
-
-### Dec 8: Final Presentation
-- **[Team]** Presentation.
-
-
 
 # Project Name
 CocktailCraft
@@ -86,8 +41,21 @@ As a user, I want to enter the ingredients I currently have and receive cocktail
 
 ---
 ## Use Cases
-### Use Case 1
-
+### Use Case 1 [Qinli]
+Inputs
+* Cocktail name: A text field where the user types a cocktail name.
+* Base spirit: A dropdown with the options: Gin, Vodka, Rum, Tequila, Whiskey, Brandy, and Other.
+Input requirement
+The user must enter a cocktail name or select a specific base spirit, or both. The user can select multiple base spirits at a time, and the system would return (if exist) any cocktail that contains at least one of the base spirit.
+Normal Flow
+1. The user enters a cocktail name and/or selects the base spirit(s).
+2. The user clicks Search.
+3. The system searches for cocktails that match all provided criteria. Name matching is case-insensitive and allows partial matches.
+4. The system displays the matching cocktail names in a results list.
+Alternative Flows
+* If the name is blank and there is no selected base spirit, the system displays: “Please enter a cocktail name or select a base spirit.”
+* If no cocktails match, the system displays: “No cocktails found.”
+* If the API request fails, the system displays an error message and allows the user to retry.
 ### Use Case 2
 
 ### Use Case 3
@@ -97,7 +65,7 @@ As a user, I want to enter the ingredients I currently have and receive cocktail
 ## Minimal Viable Product (MVP)
 | Team Member | MVP Use Case |
 |-------------|--------------|
-| Name | Use Case |
+| Qinli | The user enters a cocktail name and/or selects one or more base spirits, then clicks Search. The system displays matching cocktail names or a message indicating missing input, no matches, or an API failure. |
 | Name | Use Case |
 | Name | Use Case |
 ---
