@@ -93,7 +93,7 @@ EXTENSION
 |-------------|--------------|
 | Qinli | The user enters a cocktail name and/or selects one or more base spirits, then clicks Search. The system displays matching cocktail names or a message indicating missing input, no matches, or an API failure. |
 | Enhao | Use Case |
-| Jiaqi | Use Case |
+| Jiaqi | The user enters a cocktail name and score from 1 to 5, optionally enter notes, then clicks Save. The system saved all the information above to save pages. |
 | Wenqian | The user enters the ingredients she/he currently has, then clicks Match. The system gives cocktail recommendations based on them. |
 ---
 ## Entities
