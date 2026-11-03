@@ -63,7 +63,7 @@ Alternative Flows
 
 ### Use Case 3 [Jiaqi]
 MAIN SUCCESS SCENARIO
-1. User enters the cocktail she/he drank, the scores of the cocktails, as well as the additional notes she/he want to add to this cocktails(this is optional)
+1. User enters the cocktail she/he tried, gives it a rating from 1 to 5, and add additional notes optionally.
 2. The users click save button
 3. The system received the entered information.
 4. System updates the information and display them in the saved page.
