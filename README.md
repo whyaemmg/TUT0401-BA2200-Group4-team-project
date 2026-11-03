@@ -64,6 +64,7 @@ Input
 1) An existing cocktail recipe selected by the user.
 2) Ingredient names, quantities, and units.
 3) A name for a customized recipe
+
 Normal Flow
 1) The user selects an existing cocktail recipe and clicks Customize.
 2) The system displays the recipe's ingredients, quantities, and units.
@@ -71,6 +72,7 @@ Normal Flow
 4) The user enters a name for a customized recipe and clicks Save.
 5) The system validates the input.
 6) The system saves the customized recipe separately from the original and displays the saved recipe.
+
 Alternative Flows
 1) If the recipe name or an ingredient name is blank, the system asks the user to enter the missing information.
 2) If a quantity is not a positive number or a unit is missing, the system asks the user to enter a valid quantity and unit.
