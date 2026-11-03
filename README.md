@@ -14,7 +14,7 @@ at the end of the term.
 
 
 # Project Name
-CocktailCraft
+- CocktailCraft
 ## Team Information
 - team name: Team400
 - TUT: 0401 BA2200 Group4
@@ -27,7 +27,7 @@ CocktailCraft
 ## Project Description
 CocktailCraft is an application for discovering, customizing, and managing cocktail recipes. It allows users to search and filter cocktails, personalize ingredients and quantities, save favourites, rate drinks, and receive recommendations based on the ingredients they have available.
 ### Domain
-[Project description]
+- food: drinks
 ---
 ## User Stories
 ### User Story 1
@@ -88,8 +88,35 @@ EXTENSION
 ---
 ## Entities
 ### Entity 1
+Cocktail
+- name
+- baseSpirit
+- flavour
+- recipeIngredient
 ### Entity 2
-(Add additional entities as needed.)
+Ingredient
+- name
+- category
+- flavour
+### Entity 3
+RecipeIngredient
+- ingredient
+- quantity
+- unit
+### Entity 4
+User
+- userId
+- userName
+### Entity 5
+CocktailReview
+- user
+- cocktail
+- rating
+- reviewNote
+### Entity 6
+UserIngredient
+- user
+- ingredients
 ---
 ## API Usage
 **API Name:**
