@@ -30,13 +30,13 @@ CocktailCraft is an application for discovering, customizing, and managing cockt
 - food: drinks
 ---
 ## User Stories
-### User Story 1
+### User Story 1 [Qinli]
 As a user, I want to search for cocktails by name and filter them by base spirit, flavour profile, and carbonation so that I can easily find drinks that match my preferences.
-### User Story 2
+### User Story 2 [Enhao]
 As a user, I want to customize existing cocktail recipes by adding, removing, or replacing ingredients and adjusting quantities so that I can make drinks according to my personal preferences.
-### User Story 3
+### User Story 3 [Jiaqi]
 As a user, I want to save my favourite cocktails, rate them, and add personal notes so that I can keep track of drinks I enjoy and revisit their recipes later.
-### User Story 4
+### User Story 4 [Wenqian]
 As a user, I want to enter the ingredients I currently have and receive cocktail recommendations based on them so that I can discover drinks I like and can make with purchasing minimum additional ingredients.
 
 ---
@@ -62,6 +62,16 @@ Alternative Flows
 ### Use Case 2 [Enhao]
 
 ### Use Case 3 [Jiaqi]
+MAIN SUCCESS SCENARIO
+1. User enters the cocktail she/he drank, the scores of the cocktails, as well as the additional notes she/he want to add to this cocktails(this is optional)
+2. The users click save button
+3. The system received the entered information.
+4. System updates the information and display them in the saved page.
+
+EXTENSION:
+1. if the user didn’t enter cocktail name or score or both of them and try to click save button first, then the system asks user to enter both of them.
+2. Once the user click the saved page, it should display all the rating history to the user. User can click the the specific history to check more details.
+
 
 ### Use Case 4 [Wenqian]
 MAIN SUCCESS SCENARIO
