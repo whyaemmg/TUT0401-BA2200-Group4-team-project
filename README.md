@@ -45,13 +45,16 @@ As a user, I want to enter the ingredients I currently have and receive cocktail
 Inputs
 * Cocktail name: A text field where the user types a cocktail name.
 * Base spirit: A dropdown with the options: Gin, Vodka, Rum, Tequila, Whiskey, Brandy, and Other.
+  
 Input requirement
 The user must enter a cocktail name or select a specific base spirit, or both. The user can select multiple base spirits at a time, and the system would return (if exist) any cocktail that contains at least one of the base spirit.
+
 Normal Flow
 1. The user enters a cocktail name and/or selects the base spirit(s).
 2. The user clicks Search.
 3. The system searches for cocktails that match all provided criteria. Name matching is case-insensitive and allows partial matches.
 4. The system displays the matching cocktail names in a results list.
+   
 Alternative Flows
 * If the name is blank and there is no selected base spirit, the system displays: “Please enter a cocktail name or select a base spirit.”
 * If no cocktails match, the system displays: “No cocktails found.”
@@ -67,6 +70,7 @@ MAIN SUCCESS SCENARIO
 3. The system match at most cocktail recipes which includes all or some of the ingredients.
 4. The system shows these recipes and the additional ingredients user needs to purchase. (success outcome)
 5. The system allows user to filter these results by flavour and base or popularity by default.
+   
 EXTENSION
 1. If the ingredients user enters do not exist in the system, the system ask the user which category this ingredients is and its flavour.
 2. If the user wants to see more cocktail recommendations, the system continues to display.
