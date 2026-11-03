@@ -56,9 +56,21 @@ Alternative Flows
 * If the name is blank and there is no selected base spirit, the system displays: “Please enter a cocktail name or select a base spirit.”
 * If no cocktails match, the system displays: “No cocktails found.”
 * If the API request fails, the system displays an error message and allows the user to retry.
-### Use Case 2
+### Use Case 2 [Enhao]
 
-### Use Case 3
+### Use Case 3 [Jiaqi]
+
+### Use Case 4 [Wenqian]
+MAIN SUCCESS SCENARIO
+1. The user enters the ingredients she/he currently has.
+2. The user clicks Match. (trigger)
+3. The system match at most cocktail recipes which includes all or some of the ingredients.
+4. The system shows these recipes and the additional ingredients user needs to purchase. (success outcome)
+5. The system allows user to filter these results by flavour and base or popularity by default.
+EXTENSION
+1. If the ingredients user enters do not exist in the system, the system ask the user which category this ingredients is and its flavour.
+2. If the user wants to see more cocktail recommendations, the system continues to display.
+3. If no recipes matches, the system shows: "No cocktails found."
 
 (Add additional use cases as needed.)
 ---
@@ -66,8 +78,9 @@ Alternative Flows
 | Team Member | MVP Use Case |
 |-------------|--------------|
 | Qinli | The user enters a cocktail name and/or selects one or more base spirits, then clicks Search. The system displays matching cocktail names or a message indicating missing input, no matches, or an API failure. |
-| Name | Use Case |
-| Name | Use Case |
+| Enhao | Use Case |
+| Jiaqi | Use Case |
+| Wenqian | The user enters the ingredients she/he currently has, then clicks Match. The system gives cocktail recommendations based on them. |
 ---
 ## Entities
 ### Entity 1
