@@ -59,6 +59,7 @@ Alternative Flows
 * If the name is blank and there is no selected base spirit, the system displays: “Please enter a cocktail name or select a base spirit.”
 * If no cocktails match, the system displays: “No cocktails found.”
 * If the API request fails, the system displays an error message and allows the user to retry.
+
 ### Use Case 2 [Enhao]
 Input
 1) An existing cocktail recipe selected by the user.
@@ -79,7 +80,27 @@ Alternative Flows
 3) If all ingredients have been removed, the system displays: “Please add at least one ingredient.”
 4) If saving fails, the system displays an error message and allows the user to retry.
 5) If the user clicks Cancel, the system discards the changes and returns to the original recipe.
+
 ### Use Case 3 [Jiaqi]
+use case 1:
+MAIN SUCCESS SCENARIO
+1. User access log in page, enters their username and password. 
+2. The user click log in/cancel; Or user click register to create a new account. 
+3. The system received the account information.
+4. The user enters the main page.
+5. If the user doesn't have an account
+6. the user click registar.
+7. The user chooses a username
+8. The user chooses a password and enters it twice to help catch typing mistakes
+9. If the username already exists, the system alerts the user
+10. If the two passwords don't match, the system alerts the user
+11. If the username doesn’t exist in the system and the passwords match, then the system creates the user but does not log in them.
+12. System goes back to the login page.
+
+EXTENSION
+
+
+use case 2:
 MAIN SUCCESS SCENARIO
 1. User enters the cocktail she/he tried, gives it a rating from 1 to 5, and add additional notes optionally.
 2. The users click save button
@@ -111,7 +132,7 @@ EXTENSION
 |-------------|--------------|
 | Qinli | The user enters a cocktail name and/or selects one or more base spirits, then clicks Search. The system displays matching cocktail names or a message indicating missing input, no matches, or an API failure. |
 | Enhao | The user selects an existing cocktail recipe, adds, removes, or replaces ingredients, and adjusts quantities. The user then names and saves the customized recipe. The system validates the input and saves it separately from the original recipe.  |
-| Jiaqi | The user enters a cocktail name and score from 1 to 5, optionally enter notes, then clicks Save. The system saved all the information above to save pages. |
+| Jiaqi | The user can log in and log out at any time. They are able to create an account if they never log in before. The user enters a cocktail name, then clicks Save. The system saved all the information above to save pages. |
 | Wenqian | The user enters the ingredients she/he currently has, then clicks Match. The system gives cocktail recommendations based on them. |
 ---
 ## Entities
