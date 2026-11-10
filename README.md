@@ -85,7 +85,7 @@ Alternative Flows
 use case 1:
 MAIN SUCCESS SCENARIO
 1. User access log in page, enters their username and password. 
-2. The user click log in/cancel; Or user click register to create a new account. 
+2. The user click log in/cancel; 
 3. The system received the account information.
 4. The user enters the main page.
 5. If the user doesn't have an account
