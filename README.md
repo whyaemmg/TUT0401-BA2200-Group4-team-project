@@ -41,9 +41,7 @@ alcohol content so that I can find recipes that match my preferences.
 
 ### User Story 2 [Enhao]
 
-As a user, I want to customize existing cocktail recipes by changing their names, adding, removing, 
-or replacing ingredients, and adjusting quantities. I also want to save these recipes to my account 
-and view and edit them through My Custom Cocktails so that I can keep and reuse recipes that match my personal preferences.
+As a user, I want to customize an existing cocktail recipe by changing its name, ingredients, quantities, units, and preparation instructions. I also want to save my custom recipes to my account and reopen them through My Custom Cocktails so that I can reuse and refine them later.
 
 ### User Story 3 [Jiaqi]
 As a user, I want to register an account, log in and log out, and access my personal profile so that I can securely manage my account and revisit my favourite cocktails and customized recipes.
@@ -51,6 +49,10 @@ As a user, I want to register an account, log in and log out, and access my pers
 As a user, I want to browse cocktails on the main page and view the details of the recipes that I'm interested so that I can decide which cocktails I would like to make.
 ### User Story 5 [Wenqian]
 As a user, I want to save my favourite cocktails so that I can easily find and revisit them later.
+
+### User Story 6 [Enhao]
+
+As a user, I want to choose English, Simplified Chinese, or French when I start CocktailCraft so that I can use the interface and read built-in cocktail recipes in my preferred language.
 
 ---
 
@@ -89,11 +91,12 @@ The user must enter a name or select at least one base spirit, flavor, or alcoho
 - If no cocktails match, the system displays “No cocktails found.”
 - If the catalog cannot be accessed, the system reports the failure and allows retry.
 
+### Use Case 2 [Enhao]
 
 **Inputs**
 
 - An existing recipe selected from Cocktail Details, or the user's saved Custom Recipe.
-- A recipe name, ingredient names, quantities, and units.
+- A recipe name, ingredient names, quantities, units, and optional preparation instructions.
 
 **Precondition**
 
@@ -103,7 +106,7 @@ The user is logged in.
 
 1. The user opens Cocktail Details and clicks Customize.
 2. The system displays an editable copy of the selected recipe.
-3. The user changes the recipe name, adds, removes, or replaces ingredients, and adjusts quantities and units.
+3. The user changes the recipe name, add, remove, or replace ingredients, adjust quantities and units, and edit the preparation instructions.
 4. The user clicks Save.
 5. The system validates the input.
 6. The system creates and saves a separate Custom Recipe associated with the current user.
@@ -224,6 +227,28 @@ Updated favourite status
 1. The system cannot update the user's favourite list.
 2. The system displays an error message.
 
+### Use Case 6 [Enhao]
+
+**Input**
+
+A language selection: English, Simplified Chinese, or French.
+
+**Output**
+
+The interface and built-in cocktail recipes are displayed in the selected language.
+
+**Normal Flow**
+
+1. The user starts CocktailCraft.
+2. The system displays the language selector.
+3. The user selects a language and confirms their choice.
+4. The system opens the Home page and uses the selected language throughout the current session.
+5. When the user opens a built-in cocktail, the system displays its name, ingredients, units, and preparation instructions in the selected language.
+
+**Alternative Flow**
+
+- If the user cancels or closes the language selector, the application closes.
+
 ---
 
 ## Minimal Viable Product (MVP)
@@ -231,7 +256,7 @@ Updated favourite status
 | Team Member | MVP Use Case |
 |-------------|--------------|
 | Qinli | The user enters a name and/or selects base spirits, flavor families, or alcohol-content ranges. Search updates the Home list with matching recipes that can be opened in Details. Clear restores browsing. Missing input, no matches, and catalog failure have distinct messages. |
-| Enhao | The user customizes an existing cocktail recipe by changing its name, ingredients, and quantities, then saves it as a separate Custom Recipe linked to their account. Through My Custom Cocktails, the user can list, reopen, and edit their own recipes. Saved recipes remain available after restarting the application and logging in again. |
+| Enhao | The user customizes an existing cocktail recipe by changing its name, ingredients, quantities, units, and preparation instructions, then saves it as a separate Custom Recipe linked to their account. Through My Custom Cocktails, the user can list, reopen, and edit their saved recipes. Saved recipes remain available after restarting the application and logging in again. |
 | Jiaqi | The users register a new account, log in with their username and password, and access their personal profile to access saved cocktails. The system saves user account information so that users can log in again after restarting the application.|
 | Wenqian | The user clicks a cocktail, the system display the ingredients and instructions of it. The user click 'Favourite' button, then save this cocktail to home page.|
 ---
