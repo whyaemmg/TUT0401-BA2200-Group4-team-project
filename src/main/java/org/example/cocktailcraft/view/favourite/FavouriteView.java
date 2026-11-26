@@ -35,9 +35,9 @@ public class FavouriteView extends JPanel implements FavouriteViewModelListener 
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(favouriteButton)) {
-                            final FavouriteState currentState = favouriteViewModel.getState();
-
-                            favouriteController.execute(user, cocktailID);
+                            if (favouriteController != null && user != null && cocktailID != null) {
+                                favouriteController.execute(user, cocktailID);
+                            }
                         }
                     }
                 }
@@ -45,6 +45,7 @@ public class FavouriteView extends JPanel implements FavouriteViewModelListener 
 
 
 
+        favouriteButton.setEnabled(false);
         stateChanged();
     }
 
@@ -64,10 +65,19 @@ public class FavouriteView extends JPanel implements FavouriteViewModelListener 
     }
 
 
-    public void setUser(User user){this.user = user;}
+    public void setFavouriteController(FavouriteController controller) {
+        this.favouriteController = controller;
+        setCurrentCocktail(user, cocktailID);
+    }
+
+    public void setUser(User user) {
+        setCurrentCocktail(user, cocktailID);
+    }
 
     public void setCurrentCocktail(User user, String cocktailID) {
         this.user = user;
         this.cocktailID = cocktailID;
+        favouriteButton.setEnabled(favouriteController != null && user != null && cocktailID != null);
+        favouriteButton.setText(user != null && cocktailID != null && user.isFavourite(cocktailID) ? "♥" : "♡");
     }
 }

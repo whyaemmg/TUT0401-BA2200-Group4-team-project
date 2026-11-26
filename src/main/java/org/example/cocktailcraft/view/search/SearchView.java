@@ -4,6 +4,8 @@ import org.example.cocktailcraft.entity.Tags;
 import org.example.cocktailcraft.interface_adapter.search.SearchController;
 import org.example.cocktailcraft.interface_adapter.search.SearchState;
 import org.example.cocktailcraft.interface_adapter.search.SearchViewModel;
+import org.example.cocktailcraft.view.language.I18n;
+import org.example.cocktailcraft.view.language.Language;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -18,7 +20,6 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.util.Map;
 import java.util.EnumMap;
-import java.util.Locale;
 import java.util.Set;
 import java.util.EnumSet;
 import java.util.function.Function;
@@ -28,46 +29,52 @@ public class SearchView extends JPanel {
     private final Map<Tags.Flavor, JCheckBox> flavorOptions = new EnumMap<>(Tags.Flavor.class);
     private final Map<Tags.AlcoholRange, JCheckBox> alcoholOptions = new EnumMap<>(Tags.AlcoholRange.class);
     private final SearchViewModel searchViewModel;
+    private final I18n i18n;
     private final JTextField nameInputField = new JTextField(22);
-    private final JButton searchButton = new JButton("Search");
+    private final JButton searchButton;
     private final JButton spiritSelector;
     private final JButton flavorSelector;
     private final JButton alcoholSelector;
     private SearchController searchController;
 
     public SearchView(SearchViewModel searchViewModel) {
+        this(searchViewModel, new I18n(Language.ENGLISH));
+    }
+
+    public SearchView(SearchViewModel searchViewModel, I18n i18n) {
         super(new GridBagLayout());
         this.searchViewModel = searchViewModel;
-        JLabel nameLabel = new JLabel("Cocktail name:");
+        this.i18n = i18n;
+        searchButton = new JButton(i18n.text("search"));
+        JLabel nameLabel = new JLabel(i18n.text("cocktail.name"));
         nameLabel.setLabelFor(nameInputField);
         addControl(nameLabel, false);
         nameInputField.setMinimumSize(new Dimension(0, nameInputField.getPreferredSize().height));
         addControl(nameInputField, true);
-        spiritSelector = addSelector("Base spirits", Tags.BaseSpirit.class, spiritOptions, spirit -> {
-            String name = spirit.name().toLowerCase(Locale.ROOT);
-            return Character.toUpperCase(name.charAt(0)) + name.substring(1);
-        });
-        flavorSelector = addSelector("Flavors", Tags.Flavor.class, flavorOptions, this::flavorLabel);
-        alcoholSelector = addSelector("Alcohol content", Tags.AlcoholRange.class, alcoholOptions, this::alcoholLabel);
-        spiritSelector.setToolTipText("Results must contain every selected base spirit.");
-        flavorSelector.setToolTipText(
-                "Results must have at least one selected flavor; unlabelled recipes do not match.");
-        alcoholSelector.setToolTipText("Match any selected range using the recipe's recorded ABV percentage.");
+        spiritSelector = addSelector("spirits", Tags.BaseSpirit.class, spiritOptions,
+                spirit -> i18n.text("spirit." + spirit.name()));
+        flavorSelector = addSelector("flavors", Tags.Flavor.class, flavorOptions,
+                flavor -> i18n.text("flavor." + flavor.name()));
+        alcoholSelector = addSelector("alcohol", Tags.AlcoholRange.class, alcoholOptions,
+                range -> i18n.text("alcohol." + range.name()));
+        spiritSelector.setToolTipText(i18n.text("spirits.tooltip"));
+        flavorSelector.setToolTipText(i18n.text("flavors.tooltip"));
+        alcoholSelector.setToolTipText(i18n.text("alcohol.tooltip"));
 
         searchButton.setEnabled(false);
         searchButton.addActionListener(event -> search());
         nameInputField.addActionListener(event -> search());
         addControl(searchButton, false);
 
-        JButton clearButton = new JButton("Clear");
+        JButton clearButton = new JButton(i18n.text("clear"));
         clearButton.addActionListener(event -> {
             nameInputField.setText("");
             clearSelections(spiritOptions);
             clearSelections(flavorOptions);
             clearSelections(alcoholOptions);
-            spiritSelector.setText("Base spirits");
-            flavorSelector.setText("Flavors");
-            alcoholSelector.setText("Alcohol content");
+            spiritSelector.setText(i18n.text("spirits"));
+            flavorSelector.setText(i18n.text("flavors"));
+            alcoholSelector.setText(i18n.text("alcohol"));
             if (searchController != null) {
                 searchController.clear();
             } else {
@@ -94,9 +101,10 @@ public class SearchView extends JPanel {
         }
     }
 
-    private <T extends Enum<T>> JButton addSelector(String title, Class<T> type,
+    private <T extends Enum<T>> JButton addSelector(String key, Class<T> type,
                                                    Map<T, JCheckBox> options, Function<T, String> label) {
-        JButton selector = new JButton(title + " (" + type.getEnumConstants().length + ")");
+        String title = i18n.text(key);
+        JButton selector = new JButton(i18n.text(key + ".count", (long) type.getEnumConstants().length));
         // Reserve space for the largest count so selecting options cannot grow the row.
         Dimension selectorSize = selector.getPreferredSize();
         selector.setPreferredSize(selectorSize);
@@ -108,7 +116,7 @@ public class SearchView extends JPanel {
             options.put(value, option);
             option.addActionListener(event -> {
                 long count = options.values().stream().filter(JCheckBox::isSelected).count();
-                selector.setText(count == 0 ? title : title + " (" + count + ")");
+                selector.setText(count == 0 ? title : i18n.text(key + ".count", count));
             });
             dropdown.add(option);
         }
@@ -116,44 +124,6 @@ public class SearchView extends JPanel {
         selector.addActionListener(event -> dropdown.show(selector, 0, selector.getHeight()));
         addControl(selector, false);
         return selector;
-    }
-
-    private String flavorLabel(Tags.Flavor flavor) {
-        switch (flavor) {
-            case SWEET:
-                return "Sweet";
-            case SOUR_CITRUS:
-                return "Sour / Citrus";
-            case FRUITY_TROPICAL:
-                return "Fruity / Tropical";
-            case BITTER:
-                return "Bitter";
-            case HERBAL_FLORAL:
-                return "Herbal / Floral";
-            case SMOKY_SPICY:
-                return "Smoky / Spicy";
-            case COFFEE_NUTTY:
-                return "Coffee / Nutty";
-            case SAVORY:
-                return "Savory";
-            default:
-                return "Dry";
-        }
-    }
-
-    private String alcoholLabel(Tags.AlcoholRange range) {
-        switch (range) {
-            case ZERO:
-                return "0% ABV";
-            case LOW:
-                return "Above 0% to below 10% ABV";
-            case MEDIUM:
-                return "10% to below 20% ABV";
-            case HIGH:
-                return "20% ABV and above";
-            default:
-                return "ABV not specified";
-        }
     }
 
     private void clearSelections(Map<?, JCheckBox> options) {

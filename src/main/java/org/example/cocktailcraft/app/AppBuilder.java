@@ -1,6 +1,7 @@
 package org.example.cocktailcraft.app;
 
 import org.example.cocktailcraft.data_access.CocktailJsonReader;
+import org.example.cocktailcraft.data_access.RecipeTranslations;
 import org.example.cocktailcraft.data_access.InMemoryUserDataAccessObject;
 import org.example.cocktailcraft.data_access.SearchCocktailDataAccessObject;
 import org.example.cocktailcraft.entity.Cocktail;
@@ -30,6 +31,8 @@ import org.example.cocktailcraft.view.browse.MainPageView;
 import org.example.cocktailcraft.view.click.ClickView;
 import org.example.cocktailcraft.view.favourite.FavouriteView;
 import org.example.cocktailcraft.view.search.SearchView;
+import org.example.cocktailcraft.view.language.I18n;
+import org.example.cocktailcraft.view.language.Language;
 import org.example.cocktailcraft.data_access.FileCustomRecipeDataAccessObject;
 import org.example.cocktailcraft.interface_adapter.customize.CustomizeController;
 import org.example.cocktailcraft.interface_adapter.customize.CustomizePresenter;
@@ -41,11 +44,16 @@ import org.example.cocktailcraft.interface_adapter.customize.CustomizeState;
 import java.util.List;
 import java.nio.file.Path;
 import java.util.function.Supplier;
+import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
 
 public class AppBuilder {
+    private final I18n i18n;
+    private final CocktailJsonReader catalogReader;
+
     private User user;
     private SearchViewModel searchViewModel;
     private SearchView searchView;
@@ -60,14 +68,24 @@ public class AppBuilder {
     private CustomizeViewModel customizeViewModel;
     private CustomizeView customizeView;
 
+    public AppBuilder() {
+        this(Language.ENGLISH);
+    }
+
+    public AppBuilder(Language language) {
+        i18n = new I18n(language);
+        RecipeTranslations translations = new RecipeTranslations(language.getLocale().getLanguage());
+        catalogReader = new CocktailJsonReader(translations::translate);
+    }
+
     public AppBuilder addSearchView() {
         searchViewModel = new SearchViewModel();
-        searchView = new SearchView(searchViewModel);
+        searchView = new SearchView(searchViewModel, i18n);
         return this;
     }
 
     public AppBuilder addSearchUseCase() {
-        return addSearchUseCase(new SearchCocktailDataAccessObject(new CocktailJsonReader()));
+        return addSearchUseCase(new SearchCocktailDataAccessObject(catalogReader));
     }
 
     public AppBuilder addSearchUseCase(SearchDataAccessInterface searchDataAccessObject) {
@@ -88,10 +106,9 @@ public class AppBuilder {
 
     public AppBuilder addClickUseCase() {
         clickViewModel = new ClickViewModel();
-        clickView = new ClickView(clickViewModel);
+        clickView = new ClickView(clickViewModel, i18n);
 
-        final ClickDataAccessInterface clickDataAccessObject =
-                new CocktailJsonReader();
+        final ClickDataAccessInterface clickDataAccessObject = catalogReader;
 
         final ClickOutputBoundary clickOutputBoundary =
                 new ClickPresenter(clickViewModel);
@@ -109,7 +126,7 @@ public class AppBuilder {
         favouriteView = new FavouriteView(favouriteViewModel);
 
         final FavouriteDataAccessInterface FavouriteDataAccessObject =
-                new InMemoryUserDataAccessObject(new CocktailJsonReader());
+                new InMemoryUserDataAccessObject(catalogReader);
 
         final FavouriteOutputBoundary FavouriteOutputBoundary =
                 new FavouritePresenter(favouriteViewModel);
@@ -118,6 +135,7 @@ public class AppBuilder {
                 new FavouriteInteractor(FavouriteDataAccessObject, FavouriteOutputBoundary);
 
         favouriteController = new FavouriteController(FavouriteInteractor);
+        favouriteView.setFavouriteController(favouriteController);
 
         return this;
     }
@@ -129,7 +147,8 @@ public class AppBuilder {
                 clickView,
                 searchViewModel,
                 user,
-                favouriteView);
+                favouriteView,
+                i18n);
         return this;
     }
 
@@ -153,7 +172,8 @@ public class AppBuilder {
         customizeView = new CustomizeView(
                 customizeViewModel,
                 controller,
-                currentUserId
+                currentUserId,
+                i18n
         );
 
         return this;
@@ -190,7 +210,10 @@ public class AppBuilder {
             cardLayout.show(pages, "home");
         });
 
-        frame.setContentPane(pages);
+        final JPanel content = new JPanel(new BorderLayout());
+        content.add(pages, BorderLayout.CENTER);
+        content.add(new JLabel(i18n.text("language.current", i18n.getLanguage())), BorderLayout.SOUTH);
+        frame.setContentPane(content);
         cardLayout.show(pages, "home");
 
         return frame;

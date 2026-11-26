@@ -8,6 +8,8 @@ import org.example.cocktailcraft.interface_adapter.search.SearchViewModel;
 import org.example.cocktailcraft.view.click.ClickView;
 import org.example.cocktailcraft.view.favourite.FavouriteView;
 import org.example.cocktailcraft.view.search.SearchView;
+import org.example.cocktailcraft.view.language.I18n;
+import org.example.cocktailcraft.view.language.Language;
 import java.util.function.Consumer;
 
 import java.awt.BorderLayout;
@@ -24,23 +26,31 @@ import javax.swing.JSplitPane;
 public class MainPageView extends JPanel {
     private List<Cocktail> displayedCocktails;
     private Cocktail selectedCocktail;
-    private final JButton customizeButton = new JButton("Customize");
+    private final JButton customizeButton;
 
     public MainPageView(SearchView search, List<Cocktail> cocktails,
-                        ClickController clickController, ClickView clickView,SearchViewModel searchViewModel,
+                        ClickController clickController, ClickView clickView, SearchViewModel searchViewModel,
                         User user, FavouriteView favouriteView) {
+        this(search, cocktails, clickController, clickView, searchViewModel, user, favouriteView,
+                new I18n(Language.ENGLISH));
+    }
+
+    public MainPageView(SearchView search, List<Cocktail> cocktails,
+                        ClickController clickController, ClickView clickView, SearchViewModel searchViewModel,
+                        User user, FavouriteView favouriteView, I18n i18n) {
         super(new BorderLayout(12, 12));
+        customizeButton = new JButton(i18n.text("customize"));
         displayedCocktails = List.copyOf(cocktails);
         setBorder(BorderFactory.createEmptyBorder(12, 12, 12, 12));
         JPanel header = new JPanel(new BorderLayout());
         header.add(search, BorderLayout.CENTER);
-        JButton profile = new JButton("Profile");
+        JButton profile = new JButton(i18n.text("profile"));
         profile.setEnabled(false);
         header.add(profile, BorderLayout.EAST);
         add(header, BorderLayout.NORTH);
 
         JPanel catalog = new JPanel(new BorderLayout());
-        JLabel catalogTitle = new JLabel("Explore Cocktails");
+        JLabel catalogTitle = new JLabel(i18n.text("explore"));
         catalog.add(catalogTitle, BorderLayout.NORTH);
 
         DefaultListModel<String> model = new DefaultListModel<>();
@@ -58,18 +68,17 @@ public class MainPageView extends JPanel {
                 if (index == -1) {
                     selectedCocktail = null;
                     customizeButton.setEnabled(false);
+                    if (favouriteView != null) {
+                        favouriteView.setCurrentCocktail(user, null);
+                    }
                     return;
                 }
 
                 selectedCocktail = displayedCocktails.get(index);
                 customizeButton.setEnabled(true);
-                selectedCocktail = cocktails.get(index);
-                customizeButton.setEnabled(true);
-
-                favouriteView.setCurrentCocktail(user, selectedCocktail.getId());
-
-                clickController.execute(selectedCocktail.getId());
-
+                if (favouriteView != null) {
+                    favouriteView.setCurrentCocktail(user, selectedCocktail.getId());
+                }
                 clickController.execute(selectedCocktail.getId());
             }
         });
@@ -83,13 +92,13 @@ public class MainPageView extends JPanel {
                     model.addElement(cocktail.getName());
                 }
                 if (!state.getErrorMessage().isEmpty()) {
-                    catalogTitle.setText(state.getErrorMessage());
+                    catalogTitle.setText(i18n.message(state.getErrorMessage()));
                 } else if (!state.isSearchPerformed()) {
-                    catalogTitle.setText("Explore Cocktails");
+                    catalogTitle.setText(i18n.text("explore"));
                 } else if (state.getResults().isEmpty()) {
-                    catalogTitle.setText("No cocktails found.");
+                    catalogTitle.setText(i18n.text("search.empty"));
                 } else {
-                    catalogTitle.setText("Search results (" + state.getResults().size() + ")");
+                    catalogTitle.setText(i18n.text("search.results", state.getResults().size()));
                 }
             };
             searchViewModel.addListener(displaySearchState::run);
@@ -102,7 +111,9 @@ public class MainPageView extends JPanel {
 
         JPanel detailsPanel = new JPanel(new BorderLayout(10, 10));
         detailsPanel.add(clickView, BorderLayout.CENTER);
-        detailsPanel.add(favouriteView, BorderLayout.NORTH);
+        if (favouriteView != null) {
+            detailsPanel.add(favouriteView, BorderLayout.NORTH);
+        }
         detailsPanel.add(customizeButton, BorderLayout.SOUTH);
 
         JSplitPane splitPane = new JSplitPane(

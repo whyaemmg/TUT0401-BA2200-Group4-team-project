@@ -16,6 +16,10 @@ public class InMemoryUserDataAccessObject
     private final Map<String, String> passwordHashes = new HashMap<>();
     private final CocktailJsonReader cocktailDataAccessObject;
 
+    public InMemoryUserDataAccessObject() {
+        this(new CocktailJsonReader());
+    }
+
     public InMemoryUserDataAccessObject(CocktailJsonReader cocktailDataAccessObject) {
         this.cocktailDataAccessObject = cocktailDataAccessObject;
     }
