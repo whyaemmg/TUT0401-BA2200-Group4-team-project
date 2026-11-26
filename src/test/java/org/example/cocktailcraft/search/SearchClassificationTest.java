@@ -19,7 +19,7 @@ class SearchClassificationTest {
     @Test
     void alcoholRangesHaveExplicitNonOverlappingBoundaries() {
         assertEquals(AlcoholRange.UNKNOWN, AlcoholRange.fromAbv(null));
-        assertEquals(AlcoholRange.ZERO, AlcoholRange.fromAbv(0.0));
+        assertEquals(AlcoholRange.LOW, AlcoholRange.fromAbv(0.0));
         assertEquals(AlcoholRange.LOW, AlcoholRange.fromAbv(0.01));
         assertEquals(AlcoholRange.LOW, AlcoholRange.fromAbv(9.99));
         assertEquals(AlcoholRange.MEDIUM, AlcoholRange.fromAbv(10.0));

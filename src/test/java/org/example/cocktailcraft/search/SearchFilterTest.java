@@ -42,15 +42,15 @@ class SearchFilterTest {
     @Test
     void alcoholAloneIsValidAndMultipleRangesMatchAnySelectedRange() {
         controller.execute("", Set.of(), Set.of(), Set.of(AlcoholRange.LOW, AlcoholRange.HIGH));
-        assertEquals(List.of(sweet, bitter), model.getState().getResults());
+        assertEquals(List.of(sweet, bitter, zero), model.getState().getResults());
         controller.execute("", Set.of(), Set.of(), Set.of(AlcoholRange.MEDIUM));
         assertEquals(List.of(fruity), model.getState().getResults());
     }
 
     @Test
-    void zeroAndUnknownAbvAreDistinctSelections() {
-        controller.execute("", Set.of(), Set.of(), Set.of(AlcoholRange.ZERO));
-        assertEquals(List.of(zero), model.getState().getResults());
+    void lowestRangeIncludesZeroButExcludesUnknownAbv() {
+        controller.execute("", Set.of(), Set.of(), Set.of(AlcoholRange.LOW));
+        assertEquals(List.of(sweet, zero), model.getState().getResults());
         controller.execute("", Set.of(), Set.of(), Set.of(AlcoholRange.UNKNOWN));
         assertEquals(List.of(unknown), model.getState().getResults());
     }

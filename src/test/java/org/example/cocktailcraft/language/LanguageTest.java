@@ -69,6 +69,20 @@ class LanguageTest {
                 assertEquals(Set.of(Tags.BaseSpirit.GIN), search.getSelectedBaseSpirits());
                 assertEquals(i18n.text("spirits.count", 1), spirits.getText());
 
+                JButton alcohol = button(search, i18n.text("alcohol"));
+                JPopupMenu alcoholPopup = alcohol.getComponentPopupMenu();
+                assertEquals(4, alcoholPopup.getComponentCount());
+                JCheckBox low = (JCheckBox) alcoholPopup.getComponent(0);
+                assertEquals(i18n.text("alcohol.LOW"), low.getText());
+                low.doClick(0);
+                assertEquals(Set.of(Tags.AlcoholRange.LOW), search.getSelectedAlcoholRanges());
+                JCheckBox unknown = (JCheckBox) alcoholPopup.getComponent(3);
+                assertEquals(i18n.text("alcohol.UNKNOWN"), unknown.getText());
+                unknown.doClick(0);
+                assertEquals(Set.of(Tags.AlcoholRange.LOW, Tags.AlcoholRange.UNKNOWN),
+                        search.getSelectedAlcoholRanges());
+                assertEquals(i18n.text("alcohol.count", 2), alcohol.getText());
+
                 ClickViewModel clickModel = new ClickViewModel();
                 clickModel.getState().setInstructions("Stir gently. 自定义步骤。");
                 ClickView details = new ClickView(clickModel, i18n);

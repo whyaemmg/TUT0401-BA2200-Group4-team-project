@@ -67,17 +67,17 @@ class SearchViewTest {
     }
 
     @Test
-    void alcoholDropdownDistinguishesUnknownFromZeroAndSupportsMultipleRanges() throws Exception {
+    void alcoholDropdownOffersRangesIncludingZeroAndSeparatesUnknown() throws Exception {
         SwingUtilities.invokeAndWait(() -> {
             SearchView view = new SearchView(new SearchViewModel());
             JButton selector = selector(view, "Alcohol content");
             JPopupMenu dropdown = selector.getComponentPopupMenu();
-            assertEquals(5, dropdown.getComponentCount());
-            option(dropdown, "0% ABV").doClick();
+            assertEquals(4, dropdown.getComponentCount());
+            option(dropdown, "Below 10% ABV (includes 0%)").doClick();
             option(dropdown, "ABV not specified").doClick();
-            assertEquals(Set.of(AlcoholRange.ZERO, AlcoholRange.UNKNOWN), view.getSelectedAlcoholRanges());
+            assertEquals(Set.of(AlcoholRange.LOW, AlcoholRange.UNKNOWN), view.getSelectedAlcoholRanges());
             assertEquals("Alcohol content (2)", selector.getText());
-            option(dropdown, "0% ABV").doClick();
+            option(dropdown, "Below 10% ABV (includes 0%)").doClick();
             assertEquals(Set.of(AlcoholRange.UNKNOWN), view.getSelectedAlcoholRanges());
             assertEquals("Alcohol content (1)", selector.getText());
             option(dropdown, "ABV not specified").doClick();

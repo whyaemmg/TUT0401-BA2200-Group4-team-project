@@ -28,7 +28,6 @@ public class Tags {
 
     /** Application-defined ranges for the source recipe ABV percentage. */
     public enum AlcoholRange {
-        ZERO,
         LOW,
         MEDIUM,
         HIGH,
@@ -40,9 +39,6 @@ public class Tags {
             }
             if (!Double.isFinite(abv) || abv < 0 || abv > 100) {
                 throw new IllegalArgumentException("ABV must be between 0 and 100.");
-            }
-            if (abv == 0) {
-                return ZERO;
             }
             if (abv < 10) {
                 return LOW;

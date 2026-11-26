@@ -1,6 +1,8 @@
 package org.example.cocktailcraft.search;
 
 import org.example.cocktailcraft.app.AppBuilder;
+import org.example.cocktailcraft.data_access.CocktailJsonReader;
+import org.example.cocktailcraft.data_access.SearchCocktailDataAccessObject;
 import org.example.cocktailcraft.entity.Cocktail;
 import org.example.cocktailcraft.entity.Tags;
 import org.example.cocktailcraft.entity.User;
@@ -61,7 +63,33 @@ class SearchIntegrationTest {
             assertEquals("Daiquiri", fixture.results().getModel().getElementAt(0));
             fixture.results().setSelectedIndex(0);
             assertEquals("daiquiri", fixture.selectedId.get());
+            assertEquals(1, fixture.detailsRequests.get());
             assertTrue(fixture.hasLabel("Search results (1)"));
+        });
+    }
+
+    @Test
+    void lowestAbvRangeOpensAndCustomizesTheMatchingBundledRecipes() throws Exception {
+        SwingUtilities.invokeAndWait(() -> {
+            Fixture fixture = new Fixture(new SearchCocktailDataAccessObject(new CocktailJsonReader()), true);
+            AtomicReference<Cocktail> customized = new AtomicReference<>();
+            fixture.home.setCustomizeAction(customized::set);
+            fixture.selectFilter("Alcohol content", "Below 10% ABV (includes 0%)");
+            fixture.button("Search").doClick();
+            List<Cocktail> matches = fixture.model.getState().getResults();
+            assertEquals(91, matches.size());
+            assertEquals(12, matches.stream().filter(recipe -> recipe.getAbv() == 0).count());
+            JButton customize = find(fixture.home, JButton.class, "Customize");
+            for (int index = 0; index < matches.size(); index++) {
+                Cocktail expected = matches.get(index);
+                assertTrue(expected.getAbv() >= 0 && expected.getAbv() < 10);
+                fixture.results().setSelectedIndex(index);
+                assertEquals(expected.getName(), fixture.results().getSelectedValue());
+                assertEquals(expected.getId(), fixture.selectedId.get());
+                assertEquals(index + 1, fixture.detailsRequests.get());
+                customize.doClick(0);
+                assertEquals(expected, customized.get());
+            }
         });
     }
 
@@ -342,6 +370,7 @@ class SearchIntegrationTest {
         private final SearchViewModel model = new SearchViewModel();
         private final SearchView search = new SearchView(model);
         private final AtomicReference<String> selectedId = new AtomicReference<>();
+        private final AtomicInteger detailsRequests = new AtomicInteger();
         private final MainPageView home;
 
         Fixture(SearchDataAccessInterface dao) {
@@ -355,6 +384,7 @@ class SearchIntegrationTest {
                 @Override
                 public void execute(String cocktailId) {
                     selectedId.set(cocktailId);
+                    detailsRequests.incrementAndGet();
                 }
             };
             if (loadOnStartup) {
