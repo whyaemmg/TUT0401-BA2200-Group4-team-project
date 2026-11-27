@@ -68,7 +68,7 @@ class SearchMetadataReaderTest {
         Cocktail cocktail = fixture("non-flavor");
         assertTrue(cocktail.getTags().getFlavors().isEmpty());
         assertEquals(0.0, cocktail.getAbv());
-        assertEquals(AlcoholRange.ZERO, cocktail.getAlcoholRange());
+        assertEquals(AlcoholRange.LOW, cocktail.getAlcoholRange());
     }
 
     @Test
@@ -100,7 +100,7 @@ class SearchMetadataReaderTest {
         assertEquals(663, cocktails.size());
         Map<AlcoholRange, Long> ranges = cocktails.stream().collect(
                 Collectors.groupingBy(Cocktail::getAlcoholRange, Collectors.counting()));
-        assertEquals(Map.of(AlcoholRange.ZERO, 12L, AlcoholRange.LOW, 79L,
+        assertEquals(Map.of(AlcoholRange.LOW, 91L,
                 AlcoholRange.MEDIUM, 287L, AlcoholRange.HIGH, 283L, AlcoholRange.UNKNOWN, 2L), ranges);
         for (Flavor flavor : Flavor.values()) {
             assertTrue(cocktails.stream().anyMatch(cocktail -> cocktail.getTags().getFlavors().contains(flavor)),

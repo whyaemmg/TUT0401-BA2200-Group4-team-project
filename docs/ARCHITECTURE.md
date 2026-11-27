@@ -144,13 +144,13 @@ Each recipe can belong to multiple families. Missing or null tags produce an
 empty flavor set. Season, IBA status, recipe family and unrecognized tags do not
 imply flavor. Original bundled JSON is not edited.
 
-`Tags.AlcoholRange` classifies the recorded ABV percentage: ZERO is exactly 0,
-LOW is greater than 0 and less than 10, MEDIUM is at least 10 and less than 20,
+`Tags.AlcoholRange` classifies the recorded ABV percentage: LOW is at least 0
+and less than 10, MEDIUM is at least 10 and less than 20,
 and HIGH is at least 20 (up to 100). UNKNOWN represents a missing or null value,
 not zero. These are application-defined intervals, not source categories.
 Non-numeric, non-finite and out-of-range percentages are rejected as catalog
-read failures. The pinned dataset yields 12 ZERO, 79 LOW, 287 MEDIUM, 283 HIGH,
-and 2 UNKNOWN recipes.
+read failures. The pinned dataset yields 91 LOW (including 12 recorded as 0% ABV),
+287 MEDIUM, 283 HIGH, and 2 UNKNOWN recipes.
 
 Reader and domain tests cover boundaries, aliases, immutable sets, legacy
 constructors, missing metadata, malformed metadata and the full 663-recipe
@@ -178,7 +178,7 @@ are reused without changing those features' business logic.
 | Source tags, aliases, missing values and all 663 recipes | SearchMetadataReaderTest |
 | ABV boundaries, old constructors and immutable metadata | SearchClassificationTest |
 | Multi-keyword names, all selected spirits, validation and read retry | SearchInteractorTest |
-| Flavor/range OR, category AND, unknown versus zero ABV and immutable criteria | SearchFilterTest |
+| Flavor/range OR, category AND, unknown versus known low/zero ABV and immutable criteria | SearchFilterTest |
 | Independent checkbox selection, deselection and count labels | SearchViewTest |
 | Search/Enter, Clear, preserved filters on retry and correct result IDs | SearchIntegrationTest |
 | Actual window filters Negroni, opens Details/Customize and returns Home | SearchIntegrationTest.windowPreservesFilteredRecipeAcrossDetailsAndCustomize |

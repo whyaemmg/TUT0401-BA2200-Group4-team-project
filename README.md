@@ -393,9 +393,10 @@ the application session; failed reads are retried on the next request.
 7. Clear, select only Sweet and Fruity / Tropical, then Search. Results may match
    either flavor. Clear again and verify that all dropdown counts are reset.
 
-Alcohol options are 0%, above 0% to below 10%, 10% to below 20%, 20% and above,
-and ABV not specified. They use the source recipe ABV, not a measured serving
-strength. Unknown ABV does not mean zero. Flavor families and their source tag
+Alcohol options are below 10% (including 0%), 10% to below 20%, 20% and above,
+and ABV not specified. The lowest range includes the 12 recipes recorded as 0% ABV.
+These ranges use the source recipe ABV, not a measured serving strength.
+Unknown ABV does not mean zero. Flavor families and their source tag
 mapping are documented in [Search metadata](docs/ARCHITECTURE.md#search-metadata-flavor-families-and-alcohol-ranges).
 Recipes with no mapped flavor tags do not match a selected flavor; they remain
 available when the flavor menu has no selection.
