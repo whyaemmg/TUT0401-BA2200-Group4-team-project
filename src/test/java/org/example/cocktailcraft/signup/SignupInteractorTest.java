@@ -2,10 +2,15 @@ package org.example.cocktailcraft.signup;
 
 import org.example.cocktailcraft.data_access.CocktailJsonReader;
 import org.example.cocktailcraft.data_access.InMemoryUserDataAccessObject;
-import org.example.cocktailcraft.use_case.signup.*;
+import org.example.cocktailcraft.use_case.signup.SignupInputData;
+import org.example.cocktailcraft.use_case.signup.SignupInteractor;
+import org.example.cocktailcraft.use_case.signup.SignupOutputBoundary;
+import org.example.cocktailcraft.use_case.signup.SignupOutputData;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class SignupInteractorTest {
 
