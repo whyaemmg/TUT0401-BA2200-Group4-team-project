@@ -39,6 +39,7 @@ public class InMemoryUserDataAccessObject
         users.put(username, user);
         passwordHashes.put(username, hashedPassword);
     }
+
     @Override
     public boolean validateCredentials(String username, String password) {
         if (!users.containsKey(username)) {
@@ -49,6 +50,11 @@ public class InMemoryUserDataAccessObject
                 password,
                 passwordHashes.get(username)
         );
+    }
+
+    @Override
+    public User getUserByName(String username) {
+        return users.get(username);
     }
 
     @Override

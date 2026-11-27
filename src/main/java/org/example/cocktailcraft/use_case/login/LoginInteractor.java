@@ -1,15 +1,21 @@
 package org.example.cocktailcraft.use_case.login;
 
+import org.example.cocktailcraft.entity.User;
+import org.example.cocktailcraft.use_case.session.SessionDataAccessInterface;
+
 public class LoginInteractor implements LoginInputBoundary {
 
     private final LoginDataAccessInterface userDataAccessObject;
     private final LoginOutputBoundary loginPresenter;
+    private final SessionDataAccessInterface sessionDataAccessObject;
 
     public LoginInteractor(
             LoginDataAccessInterface userDataAccessObject,
-            LoginOutputBoundary loginPresenter) {
+            LoginOutputBoundary loginPresenter,
+            SessionDataAccessInterface sessionDataAccessObject) {
         this.userDataAccessObject = userDataAccessObject;
         this.loginPresenter = loginPresenter;
+        this.sessionDataAccessObject = sessionDataAccessObject;
     }
 
     @Override
@@ -24,8 +30,16 @@ public class LoginInteractor implements LoginInputBoundary {
         } else if (!userDataAccessObject.validateCredentials(username, password)) {
             loginPresenter.prepareFailView("Invalid username or password.");
         } else {
-            LoginOutputData outputData = new LoginOutputData(username);
-            loginPresenter.prepareSuccessView(outputData);
+            User user = userDataAccessObject.getUserByName(username);
+
+            if (user == null) {
+                loginPresenter.prepareFailView("User account not found.");
+            } else {
+                sessionDataAccessObject.setCurrentUserId(user.getId());
+
+                LoginOutputData outputData = new LoginOutputData(username);
+                loginPresenter.prepareSuccessView(outputData);
+            }
         }
     }
 }
